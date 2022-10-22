@@ -21,34 +21,18 @@ namespace CST_150_Activity13
         {
             
         }
-        int player = 0;
+        
         private void ticTactoe()
         {
-            //string[,] game = { { button1.Text, button2.Text, button3.Text }, 
-            //    { button4.Text, button5.Text, button6.Text }, { button7.Text, button8.Text, button9.Text  } };
-            //string[][] game = new string[3][];
+            //Creating multidimensional string array to store the text in the button objects
             string[,] game =  { { button1.Text, button2.Text, button3.Text }, 
                { button4.Text, button5.Text, button6.Text }, { button7.Text, button8.Text, button9.Text  } };
+               //Try block to control any possible errors that may occur. 
+               // The biggest one that occurred was a null reference error and index out of bounds exception.
+               // Problem was resolved with declaring my array differently and altering the way that I was using it.
             try
             {
-                //game[0] = new string[{ {button1.Text };] ;
-                //game[0] = new string[1];
-                //game[0] = new string[2];
-                //game[1] = new string[0];
-                //game[1] = new string[1];
-                //game[1] = new string[2];
-                //game[2] = new string[0];
-                //game[2] = new string[1];
-                //game[2] = new string[2];
-                //game[0][0] = button1.Text;
-                //game[0][1] = button2.Text;
-                //game[0][2] = button3.Text;
-                //game[1][0] = button4.Text;
-                //game[1][1] = button5.Text;
-                //game[1][2] = button6.Text;
-                //game[2][0] = button7.Text;
-                //game[2][1] = button8.Text;
-                //game[2][2] = button9.Text;
+                //Check rows, columns, and diagonals to verify for any wins or draws
 
                 if (game[0, 0] == "X" && game[0, 1] == "X" && game[0, 2] == "X")
                 {
@@ -90,6 +74,8 @@ namespace CST_150_Activity13
                 {
                     winnerTxt.Text = "O Wins";
                 }
+                //Checking for draw, if none of the buttons match across a row 
+                //  or down a column, display "draw"
                 if(game[0,0] != "" && game[0, 1] != "" && game[0, 2] != ""
                     && game[1, 0] != "" && game[1, 1] != "" && game[1, 2] != ""
                     && game[2, 0] != "" && game[2, 1] != "" && game[2, 2] != "")
@@ -97,46 +83,31 @@ namespace CST_150_Activity13
                     winnerTxt.Text = "Draw";
                 }
             }
-            catch(Exception ex) { MessageBox.Show("Could not perform");  }
-           
-            //for(int i = 0; i < game.Length; i++)
-            //{
-            //    for(int j = 0; j < game[i].Length; j++)
-            //    {
-            //        if (game[i][j] != "")
-            //        {
-            //            winnerTxt.Text = "Draw";
-            //        }
-            //        if (player == 0)
-            //        {
-            //            game[i][j] = "X";
-            //            player++;
-            //        }
-            //        else if (player == 1)
-            //        {
-            //            game[i][j] = "O";
-            //            player--;
-            //        }
-                    
-            //    }
-            //}
-           
+            catch(Exception ex) { MessageBox.Show("Could not perform action.");
             
         }
-
+        
+        int player = 0;
+        //Performed same task for every button object.
+        
         private void button1_Click(object sender, EventArgs e)
         {
+        // Player starts at 0 since player one is always X
             if(player == 0)
             {
                 button1.Text = "X";
+                // Increment player by 1 after each click, player is now 'O'
                 player++;
             }
             else 
             { 
                 button1.Text = "O";
+                // Player now returns to 'X'
                 player--;
             }
+            // Disable button
             button1.Enabled = false;
+            // Call ticTacToe() to check for wins, draws, and losses.
             ticTactoe();
         }
 
@@ -269,283 +240,3 @@ namespace CST_150_Activity13
         }
     }
 }
-
-
-
-
-
-
-
- 
-            
-            //    winnerTxt.Text = "Draw";
-            //}
-
-
-        
-        
-        //private void button1Click()
-        //{
-        //    if(player == 0)
-        //    {
-        //        button1.Text = "X";
-        //        player++;
-        //    }
-        //    else if (player == 1)
-        //    {
-        //        button1.Text = "O";
-        //        player--;
-        //    }
-        //    button1.Enabled = false;
-
-        //    win();
-
-        //}
-        
-        //void win()
-        //{
-        //    if(button1.Text != "" && button2.Text != "" && button3.Text != ""
-        //        && button4.Text != "" && button5.Text != "" && button6.Text != ""
-        //        && button7.Text != "" && button8.Text != "" && button9.Text != "")
-        //    {
-        //        winnerTxt.Text = "Draw";
-        //    }
-        //    //Check if X wins
-        //    if (button1.Text != "X" && button2.Text != "X" && button3.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button4.Text != "X" && button5.Text != "X" && button6.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button7.Text != "X" && button8.Text != "X" && button9.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button1.Text != "X" && button4.Text != "X" && button7.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button2.Text != "X" && button5.Text != "X" && button8.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button3.Text != "X" && button6.Text != "X" && button9.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button2.Text != "X" && button5.Text != "X" && button8.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button1.Text != "X" && button5.Text != "X" && button9.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button3.Text != "X" && button5.Text != "X" && button7.Text != "X")
-        //    {
-        //        winnerTxt.Text = "X won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-
-        //    //Check if O wins
-        //    if (button1.Text != "O" && button2.Text != "O" && button3.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button4.Text != "O" && button5.Text != "O" && button6.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button7.Text != "O" && button8.Text != "O" && button9.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button1.Text != "O" && button4.Text != "O" && button7.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button2.Text != "O" && button5.Text != "O" && button8.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button3.Text != "O" && button6.Text != "O" && button9.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button2.Text != "O" && button5.Text != "O" && button8.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button1.Text != "O" && button5.Text != "O" && button9.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //    if (button3.Text != "O" && button5.Text != "O" && button7.Text != "O")
-        //    {
-        //        winnerTxt.Text = "O won";
-        //        button1.Enabled = false;
-        //        button2.Enabled = false;
-        //        button3.Enabled = false;
-        //        button4.Enabled = false;
-        //        button5.Enabled = false;
-        //        button6.Enabled = false;
-        //        button7.Enabled = false;
-        //        button8.Enabled = false;
-        //        button9.Enabled = false;
-        //    }
-        //}
-  
